@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/Files/Templates/Designs/chat/Paragraph/ChatClient.css" />
+<div class="chat-sessions">
+  <!--@If(ItemPublisher:Items.Any=True)-->
+	<table class="table table-bordered table-hover">
+		<thead>
+			<th>Started at</th>
+			<th>User</th>
+		</thead>
+		<tbody>
+      <!--@LoopStart(ItemPublisher:Items.List)-->
+			<tr id="ses-<!--@ItemPublisher:Item.Field.Id-->" onclick="document.location.href = '/Default.aspx?ID=14&amp;SessionId=<!--@ItemPublisher:Item.Field.Id-->&amp;ItemParentId=<!--@ItemPublisher:Item.Field.PageId-->'">
+				<td><!--@ItemPublisher:Item.Started--></td>
+				<td><!--@ItemPublisher:Item.Name--></td>
+			</tr>
+      <!--@LoopEnd(ItemPublisher:Items.List)-->
+		</tbody>
+	</table>
+	<!--@Else-->
+	<span class="alert message">No chat sessions</span>
+	<!--@EndIf-->
+</div>

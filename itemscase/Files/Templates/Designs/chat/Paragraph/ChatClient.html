@@ -1,0 +1,88 @@
+<script src="/Files/Templates/Designs/chat/javascripts/jquery.signalR-1.0.0.js"></script>
+<script src="/signalr/hubs"></script>
+<script>var Chat = { isManager: <!--@If(Global:Extranet.UserID>0)-->true<!--@Else-->false<!--@EndIf--> };</script>
+<script src="/Files/Templates/Designs/chat/Paragraph/ChatClient.js"></script>
+<link rel="stylesheet" href="/Files/Templates/Designs/chat/Paragraph/ChatClient.css" />
+
+<section ng-controller="ChatClient">
+	<!--@If(Global:Extranet.UserID<1)-->
+	<div class="manager-info" ng-switch="managerIsConnected">
+		<div class="alert alert-success" ng-switch-when="true">Manager is online</div>
+		<div class="alert alert-warning" ng-switch-default="">Manager is offline</div>
+	</div>
+
+	<div class="text-input" ng-hide="name">
+		<input type="text" class="fire-on-enter" ng-model="username" placeholder="Enter your name…"/>
+		<button type="button" ng-disabled="!username" ng-click="startChat()">Chat</button>
+	</div>
+
+	<div ng-show="name">
+		<div ng-repeat="session in sessions" class="tab-pane session" id="{{session.id}}" ng-class="{ hasUnreadMessages: session.numberOfUnreadMessages > 0, isInactive: !session.isActive }">
+			<h1>{{session.name}}</h1>
+
+			<ul data-x-ng-show="session.messages.length > 0" class="messages well">
+				<li ng-repeat="message in session.messages" class="{{message.sender}}" ng-class="{ isUnread: message.isUnread }" ng-click="readMessage(message)">
+					<div class="time">{{message.created_at | date: 'hh:MM:ss'}}</div>
+					<div class="message">{{message.message}}</div>
+				</li>
+			</ul>
+
+			<div class="text-input">
+				<input class="new-message fire-on-enter" ng-model="session.newMessageText"/>
+				<button ng-disabled="!session.newMessageText" ng-click="newMessage(session)">Send</button>
+			</div>
+		</div>
+	</div>
+
+	<!--@Else-->
+
+	<div ng-show="name">
+		<div class="alert warning" ng-show="isManager" ng-hide="sessions.length > 0">No sessions</div>
+		<div ng-show="sessions.length > 0">
+			<div ng-show="isManager" class="alert info">Number of sessions: {{sessions.length}} ({{numberOfActiveSessions}} active)</div>
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs">
+					<li ng-repeat="session in sessions" class="session" ng-class="{ hasUnreadMessages: session.numberOfUnreadMessages > 0, isInactive: !session.isActive }">
+						<a href="#{{session.id}}" data-toggle="tab">{{session.name}} <span ng-show="session.numberOfUnreadMessages > 0" class="badge">{{session.numberOfUnreadMessages}}</span></a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active">
+						<h1 class="alert info">Please select a session</h1>
+					</div>
+
+					<div ng-repeat="session in sessions" class="tab-pane session" id="{{session.id}}" ng-class="{ hasUnreadMessages: session.numberOfUnreadMessages > 0, isInactive: !session.isActive }">
+						<h1>{{session.name}}</h1>
+
+						<ul ng-show="session.messages.length > 0" class="messages well">
+							<li ng-repeat="message in session.messages" class="{{message.sender}}" ng-class="{ isUnread: message.isUnread }" ng-click="readMessage(message)">
+								<div class="time">{{message.created_at | date: 'hh:MM:ss'}}</div>
+								<div class="message">{{message.message}}</div>
+							</li>
+						</ul>
+
+						<div class="text-input">
+							<input class="new-message fire-on-enter" ng-model="session.newMessageText"/>
+							<button ng-disabled="!session.newMessageText" ng-click="newMessage(session)">Send</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--@EndIf-->
+</section>
+
+<script>
+(function($, undefined) {
+	$(document).on('keyup', function(event) {
+		var $target = $(event.target);
+		if ($target.hasClass('fire-on-enter')) {
+			if (event.keyCode == 13) {
+				$target.siblings('button').trigger('click');
+			}
+		}
+	});
+}(jQuery));
+</script>

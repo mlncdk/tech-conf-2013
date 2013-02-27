@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/Files/Templates/Designs/chat/Paragraph/ChatClient.css" />
+<div class="chat-messages">
+  <!--@If(ItemPublisher:Items.Any=True)-->
+	<table class="table table-bordered">
+		<thead>
+			<th>Created at</th>
+			<th>Message</th>
+		</thead>
+		<tbody>
+      <!--@LoopStart(ItemPublisher:Items.List)-->
+			<tr>
+				<td><!--@ItemPublisher:Item.Created--></td>
+				<td><!--@ItemPublisher:Item.Text--></td>
+			</tr>
+      <!--@LoopEnd(ItemPublisher:Items.List)-->
+		</tbody>
+	</table>
+	<!--@Else-->
+	<span class="alert message">No chat messages</span>
+	<!--@EndIf-->
+
+	<!--@If Defined(Server:Request.sessionid)-->
+	<div><a class="btn" href="/Default.aspx?ID=3#ses-<!--@Server:Request.sessionid-->"><i class="icon-list"></i> Back to session list</a></div>
+	<!--@EndIf(Server:Request.sessionid)-->
+
+</div>

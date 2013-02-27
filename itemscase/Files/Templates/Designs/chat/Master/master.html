@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"/>
+  </head>
+  <body>
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<a class="brand" href="/?ID=<!--@DwAreaFirstActivePageID-->"><!--@Global:Area.Name--></a>
+				<ul class="nav dwnavigation" id="navbar" data-settings="startlevel:1;endlevel:1;template:navbar.xslt;expandmode:path"></ul>
+
+				<div id="user-info" class="pull-right">
+					<!--@If(Global:Extranet.UserID>0)-->
+					Welcome, 	<!--@Global:Extranet.UserName-->
+					<!--@Else-->
+					<form method="post">
+						<input name="username" value="manager"/>
+						<input name="password" value="manager"/>
+						<button type="submit">Sign in</button>
+					</form>
+					<!--@EndIf-->
+				</div>
+
+			</div>
+		</div>
+
+		<div class="container">
+			<!--@ContentPlaceholder-->
+		</div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

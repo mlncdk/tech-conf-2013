@@ -1,0 +1,84 @@
+@import 'compass';
+
+.text-input {
+	position: relative;
+
+	input {
+		height: 2em;
+		@include box-sizing(border-box);
+		width: 100%;
+		margin-bottom: 0;
+	}
+
+	button {
+		height: 2em;
+		width: 4em;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
+
+.messages {
+	height: 150px;
+	border: solid 1px #ddd;
+	margin: 1em 0;
+	overflow: auto;
+
+	.isUnread .message,
+	li.hasUnreadMessages {
+		font-weight: bold;
+	}
+
+	li {
+		list-style: none;
+		position: relative;
+
+		+ li {
+			border-top: solid 1px #ddd;
+		}
+	}
+
+	.time {
+		float: left;
+		margin-right: 1em;
+	}
+
+	.client::after {
+		content: '[client]';
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	.manager::after {
+		content: '[manager]';
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
+
+.isInactive {
+	opacity: .25;
+}
+
+.chat-sessions {
+	tbody {
+		tr {
+			cursor: pointer;
+
+			&:target {
+				color: blue;
+			}
+		}
+	}
+}
+
+.chat-sessions,
+.chat-messages {
+	th:first-child,
+	td:first-child {
+		width: 30%;
+	}
+}

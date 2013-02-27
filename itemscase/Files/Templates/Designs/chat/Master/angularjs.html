@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="">
+  <head>
+    <title>AngularJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"/>
+
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  </head>
+  <body>
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<a class="brand" href="/?ID=<!--@DwAreaFirstActivePageID-->"><!--@Global:Area.Name--></a>
+				<ul class="nav dwnavigation" id="navbar" data-settings="startlevel:1;endlevel:1;template:navbar.xslt;expandmode:path"></ul>
+
+				<!--@If(Global:Extranet.UserID>0)-->
+				<div class="navbar-text pull-right">
+					Welcome	<!--@Global:Extranet.UserName-->
+					<a class="btn btn-mini" href="/Admin/Public/ExtranetLogoff.aspx?redirectUrl=<!---0">Sign out</a>
+				</div>
+				<!--@Else-->
+				<form action="<!--@Global:Pageview.Url.Raw-->" method="post" class="navbar-form pull-right">
+					<input type="hidden" name="username" value="manager"/>
+					<input type="hidden" name="password" value="manager"/>
+					<button class="btn btn-mini" type="submit">Sign in</button>
+				</form>
+				<!--@EndIf-->
+
+			</div>
+		</div>
+
+		<div class="container">
+			<!--@ContentPlaceholder-->
+		</div>
+
+    <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
+    <script src="bootstrap/js/bootstrap.js"></script>
+	</body>
+</html>
