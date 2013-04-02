@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-16" standalone="yes"?>
+<items>
+  <item name="Slide" systemName="Slide" description="" icon="" largeIcon="">
+    <fields>
+      <field name="Title" systemName="Title" description="" type="System.String, mscorlib">
+        <editor type="Dynamicweb.Content.Items.Editors.TextEditor, Dynamicweb" />
+      </field>
+      <field name="Content" systemName="Content" description="" type="System.String, mscorlib">
+        <editor type="Dynamicweb.Content.Items.Editors.LongTextEditor, Dynamicweb" />
+      </field>
+      <field name="Type" systemName="Type" description="The slide type" type="System.String, mscorlib">
+        <editor type="Dynamicweb.Content.Items.Editors.DropDownListEditor`1, Dynamicweb" />
+        <options sourceType="Static">
+          <static>
+            <option name="Title" value="title" />
+            <option name="Empty" value="empty" />
+          </static>
+        </options>
+      </field>
+    </fields>
+    <layout>
+      <groups>
+        <group name="General" systemName="General" collapsibleState="None">
+          <fields>
+            <field systemName="Title" />
+            <field systemName="Content" />
+            <field systemName="Type" />
+          </fields>
+        </group>
+      </groups>
+    </layout>
+  </item>
+</items>

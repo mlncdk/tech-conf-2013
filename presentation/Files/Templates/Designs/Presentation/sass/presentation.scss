@@ -1,0 +1,219 @@
+@import 'compass';
+
+@include global-reset;
+
+body {
+  font-family: 'PT Sans', sans-serif;
+  // min-height: 740px;
+  background: rgb(215, 215, 215);
+	@include background-image(linear-gradient(top, rgb(215, 215, 215) 0%, lighten(rgb(215, 215, 215), 5%) 100%));
+
+  // background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+  // background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+  // background: -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+  // background: -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+  // background: -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+  // background: radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+}
+
+/*
+  Now let's bring some text styles back ...
+	*/
+
+b, strong {
+  font-weight: bold;
+}
+
+i, em {
+  font-style: italic;
+}
+
+$slide-aspect-ratio: 4/3;
+$slide-height: 768px;
+// $slide-height: 900px;
+
+.step {
+	@include box-sizing(border-box);
+
+	@include border-radius();
+	background: white;
+	padding: 0 2em;
+
+	width: $slide-height * $slide-aspect-ratio;
+	height: $slide-height;
+	font-size: 48px;
+
+	h1 {
+		font-size: 124%;
+		font-weight: bold;
+		margin: 1em 0;
+	}
+
+	p, ol, ul {
+		+ {
+			p, ol, ul {
+				margin-top: .5em;
+			}
+		}
+	}
+
+	li {
+		margin-top: .5em;
+		margin-bottom: .5em;
+	}
+
+	ol {
+		margin-left: 1em;
+
+		li {
+			list-style: decimal;
+		}
+	}
+
+	ul {
+		margin-left: 1em;
+
+		li {
+			list-style: disc;
+		}
+	}
+
+	figure {
+		display: block;
+		margin: 1em;
+		// text-align: center;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	background: {
+		image: url(../images/presentation_dynamicweb.png);
+		// size: 100% 100%;
+		size: cover;
+	}
+
+	&.slide-welcome {
+		background-image: url(../images/presentation_welcome.png);
+	}
+
+	&.slide-title {
+		background-image: url(../images/presentation_dynamicweb_front.png);
+
+		header {
+			width: 100%;
+			height: 40%;
+			display: table;
+
+			h1 {
+				display: table-cell;
+				vertical-align: bottom;
+				text-align: center;
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.content {
+			text-align: center;
+			margin-top: 10%;
+		}
+	}
+
+	&.slide-empty {
+		header {
+			width: 100%;
+			height: 100%;
+			display: table;
+
+			h1 {
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+	// &.slide-title {
+	// 	padding: 0;
+	// 	text-align: center;
+
+	// 	h1 {
+	// 		margin: 25% 0 15%;
+	// 	}
+
+	// }
+
+	// &.slide-empty {
+	// 	padding: 0;
+	// 	text-align: center;
+
+	// 	h1 {
+	// 		margin-top: 35%;
+	// 	}
+	// }
+}
+
+
+@if false {
+	// @import "compass/reset";
+	//@import 'compass';
+	//@import 'impress-demo';
+
+	#logo {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+
+	#impress {
+		.step {
+			width: 1024px;
+			height: 768px;
+			// outline: solid 1px red;
+			background-color: #eee;
+			@include border-radius();
+			@include box-sizing(border-box);
+
+			// padding: 0;
+
+			// &.past,
+			// &.future {
+			// 	// opacity: 0;
+			// 	visibility: hidden;
+			// }
+
+			header {
+				h1 {
+					font-weight: bold;
+					font-size: 124%;
+				}
+			}
+
+			ol, ul {
+				margin-left: 1em;
+
+				li {
+					list-style: disc;
+				}
+			}
+		}
+	}
+
+	#gradients {
+		// needs latest Compass, add '@import "compass"' to your scss
+		background-color: #efc5ca; // Old browsers
+		@include filter-gradient(#efc5ca, #f18e99, vertical); // IE6-9
+		@include background-image(linear-gradient(top,  #efc5ca 0%,#d24b5a 50%,#ba2737 51%,#f18e99 100%));
+	}
+
+	#agenda {
+		a {
+			background: none;
+			text-shadow: none;
+		}
+	}
+}

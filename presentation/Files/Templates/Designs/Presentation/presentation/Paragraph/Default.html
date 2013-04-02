@@ -1,0 +1,15 @@
+<section class="slide-<!--@Item.Type-->">
+	<header>
+		<h1>
+			<!--@If(Item.Title!='')-->
+			<!--@Item.Title-->
+			<!--@Else-->
+			<!--@ParagraphHeader-->
+			<!--@EndIf-->
+		</h1>
+	</header>
+
+	<!--@If Defined(Item.Content)-->
+	<div class="content"><!--@Item.Content--></div>
+	<!--@EndIf(Item.Content)-->
+</section>
